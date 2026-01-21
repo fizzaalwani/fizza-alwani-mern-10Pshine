@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken'
 import userModel from "../db/models/user"
 import bcrypt from 'bcrypt'
 import { generateAccessToken, generateRefreshToken } from '../utils/token'
-import { success } from 'zod'
 
 
 export const register = async (req, res, next) => {
