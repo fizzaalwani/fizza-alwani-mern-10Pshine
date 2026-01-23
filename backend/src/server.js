@@ -1,14 +1,13 @@
 import dotenv from "dotenv";
 dotenv.config();
-
+import pinoHttp from 'pino-http'
 import app from "./app.js";
 import connectDB from "./config/db.js";
 import errorHandler from "./middlewares/error.middleware.js";
 
 connectDB();
-
-app.use(errorHandler
-)
+app.use(pinoHttp({logger}))
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000;
 
