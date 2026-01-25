@@ -6,13 +6,16 @@ import connectDB from "./config/db.js";
 import logger from "./utils/logger.js";
 import errorHandler from "./middlewares/error.middleware.js";
 import authRouter from '../src/routes/auth.route.js'
-
+import userRouter from '../src/routes/user.route.js'
+import noteRouter from  '../src/routes/note.route.js'
 
 connectDB();
 app.use(pinoHttp({logger}))
 
 
 app.use('/api/auth',authRouter)
+app.use('/api/user',userRouter)
+app.use('/api/notes',noteRouter)
 app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000;
