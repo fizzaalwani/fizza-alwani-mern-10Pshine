@@ -9,7 +9,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -72,6 +72,13 @@ export default function Login() {
         <Link to="/signup" className="text-[#6D5DFB] font-medium">
           Sign up
         </Link>
+        <Link
+          to="/forgot-password"
+          className="text-sm text-[#6D5DFB] block text-right mt-2"
+        >
+          Forgot password?
+        </Link>
+
       </p>
     </AuthLayout>
   );
