@@ -4,14 +4,14 @@ import './index.css'
 import "jodit/es5/jodit.min.css";
 import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext.jsx';
-// import { NotesProvider } from './context/NotesContext.jsx';
+import { NotesProvider } from './context/NotesContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      {/* <NotesProvider> */}
+      <NotesProvider>
            <App />
-      {/* </NotesProvider> */}
+      </NotesProvider>
     </AuthProvider>
   </StrictMode>,
 )
