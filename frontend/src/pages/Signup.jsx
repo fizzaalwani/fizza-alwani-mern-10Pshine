@@ -21,8 +21,18 @@ export default function Signup() {
     setError("");
 
     try {
-      await API.post("/auth/register", form);
-      alert("Account created ☕ Please login");
+      let response = await API.post("/auth/register", form);
+      if (response.data.success) {
+        alert("Account created ☕ Please login");
+        setForm({
+          name: "",
+          email: "",
+          password: "",
+        })
+      }else{
+        setError("Something went wrong. Please try again later")
+      }
+
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");
     } finally {
