@@ -3,6 +3,7 @@ import userModel from "../models/user.js"
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import { generateAccessToken, generateRefreshToken } from '../utils/token.js'
+import sendEmail from '../services/sendEmail.service.js'
 
 
 export const register = async (req, res, next) => {
@@ -108,6 +109,8 @@ export const forgotPassword = async (req, res, next) => {
         user.resetOTPExpiry = Date.now() + 10 * 60 * 1000;
         await user.save();
 
+        sendEmail(user.email, "COFFEE NOTES OTP",`Your OTP is ${otp}`)
+
         console.log("OTP (for now):", otp); // EMAIL LATER
 
         res.json({ success:true,message: "OTP sent" });
@@ -131,7 +134,7 @@ export const resetPassword=async(req,res, next)=>{
 
         if(!user) return res.status(400).json({success:false, message:"Invalid OTP"})
 
-        user.password=newPassword
+        user.password=await bcrypt.hash(newPassword,10)
         user.resetOTP=undefined
         user.resetOTPExpiry=undefined
 
