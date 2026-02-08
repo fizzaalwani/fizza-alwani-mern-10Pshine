@@ -31,6 +31,7 @@ export default function ResetPassword() {
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
       setError(err.response?.data?.message || "Invalid OTP");
+      console.log('RESET PASSOWRD ERROR :',err)
     } finally {
       setLoading(false);
     }
