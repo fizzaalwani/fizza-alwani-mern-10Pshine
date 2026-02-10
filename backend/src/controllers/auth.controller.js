@@ -117,7 +117,7 @@ export const forgotPassword = async (req, res, next) => {
 
         console.log("OTP (for now):", otp); // EMAIL LATER
 
-        res.json({ success: true, message: "OTP sent" });
+        res.status(200).json({ success:true,message: "OTP sent" });
 
     } catch (err) {
         next(err)
@@ -138,9 +138,9 @@ export const resetPassword = async (req, res, next) => {
 
         if (!user) return res.status(400).json({ success: false, message: "Invalid OTP" })
 
-        user.password = newPassword
-        user.resetOTP = undefined
-        user.resetOTPExpiry = undefined
+        user.password=newPassword
+        user.resetOTP=undefined
+        user.resetOTPExpiry=undefined
 
         await user.save()
 

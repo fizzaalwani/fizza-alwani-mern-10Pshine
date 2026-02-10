@@ -15,7 +15,7 @@ export const getProfile=async(req,res,next)=>{
 
 export const updateProfile=async(req,res, next)=>{
     try{
-        const {name, email}=req.body
+        const {name}=req.body
         const user=await userModel.findById(req.user)
 
         if(!user){
@@ -25,7 +25,6 @@ export const updateProfile=async(req,res, next)=>{
             })
         }
         user.name=name || user.name
-        user.email=email || user.email
 
         await user.save()
 
