@@ -3,6 +3,7 @@ import userModel from "../models/user.js"
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import { generateAccessToken, generateRefreshToken } from '../utils/token.js'
+import sendEmail from '../services/sendEmail.service.js'
 
 
 export const register = async (req, res, next) => {
@@ -73,7 +74,7 @@ export const login = async (req, res, next) => {
     }
 }
 
-export const refreshToken = async (req, res,next) => {
+export const refreshToken = async (req, res, next) => {
 
     const { refreshToken } = req.body
 
@@ -108,9 +109,15 @@ export const forgotPassword = async (req, res, next) => {
         user.resetOTPExpiry = Date.now() + 10 * 60 * 1000;
         await user.save();
 
+        await sendEmail({
+            to: user.email,
+            subject: "COFFEE NOTES OTP",
+            text: `Your OTP is ${otp}`,
+        });
+
         console.log("OTP (for now):", otp); // EMAIL LATER
 
-        res.json({ success:true,message: "OTP sent" });
+        res.json({ success: true, message: "OTP sent" });
 
     } catch (err) {
         next(err)
@@ -118,28 +125,28 @@ export const forgotPassword = async (req, res, next) => {
 
 }
 
-export const resetPassword=async(req,res, next)=>{
-    try{
-        const {email, otp, newPassword}= req.body
+export const resetPassword = async (req, res, next) => {
+    try {
+        const { email, otp, newPassword } = req.body
 
-        const hashedOTP=crypto.createHash("sha256").update(otp).digest("hex")
-        const user=await userModel.findOne({
+        const hashedOTP = crypto.createHash("sha256").update(otp).digest("hex")
+        const user = await userModel.findOne({
             email,
-            resetOTP:hashedOTP,
-            resetOTPExpiry:{$gt: Date.now() }
+            resetOTP: hashedOTP,
+            resetOTPExpiry: { $gt: Date.now() }
         })
 
-        if(!user) return res.status(400).json({success:false, message:"Invalid OTP"})
+        if (!user) return res.status(400).json({ success: false, message: "Invalid OTP" })
 
-        user.password=newPassword
-        user.resetOTP=undefined
-        user.resetOTPExpiry=undefined
+        user.password = newPassword
+        user.resetOTP = undefined
+        user.resetOTPExpiry = undefined
 
         await user.save()
 
-        return res.status(200).json({success:true, message:"Password reset successfully"})
+        return res.status(200).json({ success: true, message: "Password reset successfully" })
 
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 }
