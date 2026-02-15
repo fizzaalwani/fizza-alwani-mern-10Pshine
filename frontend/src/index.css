@@ -1,1 +1,32 @@
 @import "tailwindcss";
+/* Coffee Notes Custom Scrollbar */
+/* Coffee Notes Scrollbar */
+
+.coffee-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.coffee-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.coffee-scroll::-webkit-scrollbar-thumb {
+  background-color: #C8B6A6; /* soft latte brown */
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.coffee-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #9B8D7F; /* deeper coffee */
+}
+
+/* Firefox */
+.coffee-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #C8B6A6 transparent;
+}
+.coffee-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4C4B0, #9B8D7F);
+  border-radius: 9999px;
+}

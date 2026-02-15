@@ -14,7 +14,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <aside className="w-64 bg-[#EFE7DE] p-5 hidden md:block flex flex-col h-screen">
+      <aside className="w-64 bg-[#EFE7DE] p-4 hidden md:block flex flex-col h-screen overflow-y-auto coffee-scroll">
         {/* Header with Settings */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-[#3F3A34]">
@@ -44,9 +44,9 @@ export default function Sidebar() {
           </div>
         )}
 
-        <button 
+        <button
           onClick={createNote}
-          className="w-full py-2 bg-[#6D5DFB] text-white rounded-lg mb-4 hover:bg-[#5A4DE0] transition-colors"
+          className="w-full py-2 bg-[#6D5DFB] bg-[#6F4E37] text-white rounded-lg mb-4 hover:bg-[#5A3E2B] transition-colors"
         >
           + New Note
         </button>
@@ -75,9 +75,9 @@ export default function Sidebar() {
           </svg>
         </div>
 
-        <p className="text-sm text-[#5A5148] py-4">
+        {/* <p className="text-sm text-[#5A5148] py-4">
           Your personal note space
-        </p>
+        </p> */}
 
         {/* Scrollable notes container */}
         {/* <div className="flex-1 overflow-y-auto pr-2 
@@ -94,15 +94,33 @@ export default function Sidebar() {
           <NotesList searchQuery={searchQuery} />
         </div> */}
 
-        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[#6D5DFB] scrollbar-track-transparent hover:scrollbar-thumb-[#5A4DE0]">
+        {/* <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[#6D5DFB] scrollbar-track-transparent hover:scrollbar-thumb-[#5A4DE0]">
   <NotesList searchQuery={searchQuery} />
-</div>
+</div> */}
+
+        {/* <div className="flex-1 overflow-y-auto  pb-4">
+    <p className="text-xs font-medium text-[#6B6258] mb-3 px-2">
+      Your personal note space
+    </p>
+    <NotesList searchQuery={searchQuery} />
+  </div> */}
+
+        {/* Scrollable Notes List */}
+        <div
+          className="flex-1 overflow-y-auto  pb-4"
+          style={{
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'rgba(155, 141, 127, 0.3) transparent'
+          }}
+        >
+          <NotesList searchQuery={searchQuery} />
+        </div>
       </aside>
 
       {/* Profile Modal */}
-      <UserProfileModal 
-        isOpen={isProfileOpen} 
-        onClose={() => setIsProfileOpen(false)} 
+      <UserProfileModal
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
       />
     </>
   );

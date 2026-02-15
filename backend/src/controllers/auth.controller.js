@@ -138,7 +138,7 @@ export const resetPassword = async (req, res, next) => {
 
         if (!user) return res.status(400).json({ success: false, message: "Invalid OTP" })
 
-        user.password = newPassword
+        user.password = await bcrypt.hash(newPassword,10)
         user.resetOTP = undefined
         user.resetOTPExpiry = undefined
 

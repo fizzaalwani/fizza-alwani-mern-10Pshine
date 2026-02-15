@@ -76,7 +76,7 @@ export default function Signup() {
 
         <button
           disabled={loading}
-          className="w-full py-3 bg-[#6D5DFB] text-white rounded-lg"
+          className="w-full py-3 bg-[#6D5DFB] bg-[#6F4E37] text-white rounded-lg"
         >
           {loading ? "Creating..." : "Sign Up"}
         </button>
@@ -84,7 +84,7 @@ export default function Signup() {
 
       <p className="text-sm text-center mt-5">
         Already have an account?{" "}
-        <Link to="/login" className="text-[#6D5DFB] font-medium">
+        <Link to="/login" className="text-[#6D5DFB] text-[#6F4E37] font-medium">
           Login
         </Link>
       </p>
