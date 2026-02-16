@@ -48,7 +48,7 @@ export default function ForgotPassword() {
 
         <button
           disabled={loading}
-          className="w-full py-3 bg-[#6D5DFB] text-white rounded-lg font-medium hover:opacity-90"
+          className="w-full py-3 bg-[#6D5DFB] bg-[#6F4E37] text-white rounded-lg font-medium hover:opacity-90"
         >
           {loading ? "Sending OTP..." : "Send OTP"}
         </button>

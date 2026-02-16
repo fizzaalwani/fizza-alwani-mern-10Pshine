@@ -30,7 +30,7 @@ export default function ResetPassword() {
       setMessage(res.data.message || "Password reset successfully");
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
-      setError(err.response?.data?.message || "Invalid OTP");
+      setError(err.response?.data?.message || "Something went wrong.Please try again later");
     } finally {
       setLoading(false);
     }
@@ -73,7 +73,7 @@ export default function ResetPassword() {
 
         <button
           disabled={loading}
-          className="w-full py-3 bg-[#6D5DFB] text-white rounded-lg font-medium hover:opacity-90"
+          className="w-full py-3 bg-[#6D5DFB] bg-[#6F4E37] text-white rounded-lg font-medium hover:opacity-90"
         >
           {loading ? "Resetting..." : "Reset Password"}
         </button>

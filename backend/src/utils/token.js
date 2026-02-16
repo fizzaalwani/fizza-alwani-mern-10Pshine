@@ -6,7 +6,7 @@ export const generateAccessToken = (id) => {
     throw new Error("JWT_ACCESS_SECRET not defined");
   }
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "15m"
+    expiresIn: "1h"
   });
 };
 
