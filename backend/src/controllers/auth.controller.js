@@ -117,7 +117,7 @@ export const forgotPassword = async (req, res, next) => {
 
         console.log("OTP (for now):", otp); // EMAIL LATER
 
-        res.json({ success: true, message: "OTP sent" });
+        res.status(200).json({ success:true,message: "OTP sent" });
 
     } catch (err) {
         next(err)
